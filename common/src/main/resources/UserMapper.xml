@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.stcommon.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.stcommon.entity.User" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
+    <result column="salt_val" property="saltVal" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="CHAR" />
+    <result column="valid_time" property="validTime" jdbcType="TIMESTAMP" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="is_phone" property="isPhone" jdbcType="CHAR" />
+    <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
+    <result column="is_mail" property="isMail" jdbcType="CHAR" />
+    <result column="qq_number" property="qqNumber" jdbcType="VARCHAR" />
+    <result column="wx_number" property="wxNumber" jdbcType="VARCHAR" />
+    <result column="wb_number" property="wbNumber" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="operation_id" property="operationId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_pass, salt_val, user_type, valid_time, phone_number, is_phone, 
+    e_mail, is_mail, qq_number, wx_number, wb_number, state, operation_id, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.stcommon.entity.User" >
+    insert into user (user_id, user_name, user_pass, 
+      salt_val, user_type, valid_time, 
+      phone_number, is_phone, e_mail, 
+      is_mail, qq_number, wx_number, 
+      wb_number, state, operation_id, 
+      create_time, update_time)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userPass,jdbcType=VARCHAR}, 
+      #{saltVal,jdbcType=VARCHAR}, #{userType,jdbcType=CHAR}, #{validTime,jdbcType=TIMESTAMP}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{isPhone,jdbcType=CHAR}, #{eMail,jdbcType=VARCHAR}, 
+      #{isMail,jdbcType=CHAR}, #{qqNumber,jdbcType=VARCHAR}, #{wxNumber,jdbcType=VARCHAR}, 
+      #{wbNumber,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{operationId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.stcommon.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPass != null" >
+        user_pass,
+      </if>
+      <if test="saltVal != null" >
+        salt_val,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="validTime != null" >
+        valid_time,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="isPhone != null" >
+        is_phone,
+      </if>
+      <if test="eMail != null" >
+        e_mail,
+      </if>
+      <if test="isMail != null" >
+        is_mail,
+      </if>
+      <if test="qqNumber != null" >
+        qq_number,
+      </if>
+      <if test="wxNumber != null" >
+        wx_number,
+      </if>
+      <if test="wbNumber != null" >
+        wb_number,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="saltVal != null" >
+        #{saltVal,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=CHAR},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isPhone != null" >
+        #{isPhone,jdbcType=CHAR},
+      </if>
+      <if test="eMail != null" >
+        #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="isMail != null" >
+        #{isMail,jdbcType=CHAR},
+      </if>
+      <if test="qqNumber != null" >
+        #{qqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNumber != null" >
+        #{wxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wbNumber != null" >
+        #{wbNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.stcommon.entity.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        user_pass = #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="saltVal != null" >
+        salt_val = #{saltVal,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=CHAR},
+      </if>
+      <if test="validTime != null" >
+        valid_time = #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isPhone != null" >
+        is_phone = #{isPhone,jdbcType=CHAR},
+      </if>
+      <if test="eMail != null" >
+        e_mail = #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="isMail != null" >
+        is_mail = #{isMail,jdbcType=CHAR},
+      </if>
+      <if test="qqNumber != null" >
+        qq_number = #{qqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNumber != null" >
+        wx_number = #{wxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wbNumber != null" >
+        wb_number = #{wbNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.stcommon.entity.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_pass = #{userPass,jdbcType=VARCHAR},
+      salt_val = #{saltVal,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=CHAR},
+      valid_time = #{validTime,jdbcType=TIMESTAMP},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      is_phone = #{isPhone,jdbcType=CHAR},
+      e_mail = #{eMail,jdbcType=VARCHAR},
+      is_mail = #{isMail,jdbcType=CHAR},
+      qq_number = #{qqNumber,jdbcType=VARCHAR},
+      wx_number = #{wxNumber,jdbcType=VARCHAR},
+      wb_number = #{wbNumber,jdbcType=VARCHAR},
+      state = #{state,jdbcType=CHAR},
+      operation_id = #{operationId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

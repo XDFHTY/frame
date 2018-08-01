@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.stcommon.mapper.AuthModularMapper" >
+    <resultMap id="BaseResultMap" type="com.cj.stcommon.entity.AuthModular" >
+        <id column="modular_id" property="modularId" jdbcType="INTEGER" />
+        <result column="page_name" property="pageName" jdbcType="VARCHAR" />
+        <result column="page_url" property="pageUrl" jdbcType="VARCHAR" />
+        <result column="page_method" property="pageMethod" jdbcType="CHAR" />
+        <result column="page_type" property="pageType" jdbcType="CHAR" />
+        <result column="page_sort" property="pageSort" jdbcType="INTEGER" />
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="spare1" property="spare1" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="CHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    modular_id, page_name, page_url, page_method, page_type, page_sort, parent_id, spare1, 
+    state, create_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from auth_modular
+        where modular_id = #{modularId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from auth_modular
+    where modular_id = #{modularId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.cj.stcommon.entity.AuthModular" >
+    insert into auth_modular (modular_id, page_name, page_url, 
+      page_method, page_type, page_sort, 
+      parent_id, spare1, state, 
+      create_time)
+    values (#{modularId,jdbcType=INTEGER}, #{pageName,jdbcType=VARCHAR}, #{pageUrl,jdbcType=VARCHAR}, 
+      #{pageMethod,jdbcType=CHAR}, #{pageType,jdbcType=CHAR}, #{pageSort,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{spare1,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.cj.stcommon.entity.AuthModular" >
+        insert into auth_modular
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="modularId != null" >
+                modular_id,
+            </if>
+            <if test="pageName != null" >
+                page_name,
+            </if>
+            <if test="pageUrl != null" >
+                page_url,
+            </if>
+            <if test="pageMethod != null" >
+                page_method,
+            </if>
+            <if test="pageType != null" >
+                page_type,
+            </if>
+            <if test="pageSort != null" >
+                page_sort,
+            </if>
+            <if test="parentId != null" >
+                parent_id,
+            </if>
+            <if test="spare1 != null" >
+                spare1,
+            </if>
+            <if test="state != null" >
+                state,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="modularId != null" >
+                #{modularId,jdbcType=INTEGER},
+            </if>
+            <if test="pageName != null" >
+                #{pageName,jdbcType=VARCHAR},
+            </if>
+            <if test="pageUrl != null" >
+                #{pageUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pageMethod != null" >
+                #{pageMethod,jdbcType=CHAR},
+            </if>
+            <if test="pageType != null" >
+                #{pageType,jdbcType=CHAR},
+            </if>
+            <if test="pageSort != null" >
+                #{pageSort,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null" >
+                #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="spare1 != null" >
+                #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.cj.stcommon.entity.AuthModular" >
+        update auth_modular
+        <set >
+            <if test="pageName != null" >
+                page_name = #{pageName,jdbcType=VARCHAR},
+            </if>
+            <if test="pageUrl != null" >
+                page_url = #{pageUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pageMethod != null" >
+                page_method = #{pageMethod,jdbcType=CHAR},
+            </if>
+            <if test="pageType != null" >
+                page_type = #{pageType,jdbcType=CHAR},
+            </if>
+            <if test="pageSort != null" >
+                page_sort = #{pageSort,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null" >
+                parent_id = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="spare1 != null" >
+                spare1 = #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null" >
+                state = #{state,jdbcType=CHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where modular_id = #{modularId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cj.stcommon.entity.AuthModular" >
+    update auth_modular
+    set page_name = #{pageName,jdbcType=VARCHAR},
+      page_url = #{pageUrl,jdbcType=VARCHAR},
+      page_method = #{pageMethod,jdbcType=CHAR},
+      page_type = #{pageType,jdbcType=CHAR},
+      page_sort = #{pageSort,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      spare1 = #{spare1,jdbcType=VARCHAR},
+      state = #{state,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where modular_id = #{modularId,jdbcType=INTEGER}
+  </update>
+
+    <resultMap id="BaseResultMap_AdminModulars" type="com.cj.stcommon.domain.AuthModulars" >
+        <id column="am_modular_id" property="modularId" jdbcType="INTEGER" />
+        <result column="am_page_name" property="pageName" jdbcType="VARCHAR" />
+        <result column="am_page_url" property="pageUrl" jdbcType="VARCHAR" />
+        <result column="am_page_method" property="pageMethod" jdbcType="VARCHAR" />
+        <result column="am_page_type" property="pageType" jdbcType="CHAR" />
+        <result column="am_page_sort" property="pageSort" jdbcType="INTEGER" />
+        <result column="am_parent_id" property="parentId" jdbcType="INTEGER" />
+        <!--<result column="am.spare1" property="spare1" jdbcType="VARCHAR" />-->
+        <!--<result column="am.state" property="state" jdbcType="CHAR" />-->
+        <!--<result column="am.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
+        <!--<result column="am.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
+        <collection property="children" ofType="com.cj.stcommon.domain.AuthModulars">
+            <id column="an_modular_id" property="modularId" jdbcType="INTEGER" />
+            <result column="an_page_name" property="pageName" jdbcType="VARCHAR" />
+            <result column="an_page_url" property="pageUrl" jdbcType="VARCHAR" />
+            <result column="an_page_method" property="pageMethod" jdbcType="VARCHAR" />
+            <result column="an_page_type" property="pageType" jdbcType="CHAR" />
+            <result column="an_page_sort" property="pageSort" jdbcType="INTEGER" />
+            <result column="an_parent_id" property="parentId" jdbcType="INTEGER" />
+            <!--<result column="an.spare1" property="spare1" jdbcType="VARCHAR" />-->
+            <!--<result column="an.state" property="state" jdbcType="CHAR" />-->
+            <!--<result column="an.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
+            <!--<result column="an.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
+            <collection property="children" ofType="com.cj.stcommon.domain.AuthModulars">
+                <id column="ao_modular_id" property="modularId" jdbcType="INTEGER" />
+                <result column="ao_page_name" property="pageName" jdbcType="VARCHAR" />
+                <result column="ao_page_url" property="pageUrl" jdbcType="VARCHAR" />
+                <result column="ao_page_method" property="pageMethod" jdbcType="VARCHAR" />
+                <result column="ao_page_type" property="pageType" jdbcType="CHAR" />
+                <result column="ao_page_sort" property="pageSort" jdbcType="INTEGER" />
+                <result column="ao_parent_id" property="parentId" jdbcType="INTEGER" />
+
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <!--查询系统里所有权限目录及信息，树形结构封装-->
+    <select id="findAllAuthModulars" resultMap="BaseResultMap_AdminModulars">
+    SELECT
+    am.modular_id am_modular_id,am.page_name am_page_name,am.page_url am_page_url,am.page_method am_page_method ,am.page_type am_page_type,am.page_sort am_page_sort,am.parent_id am_parent_id,
+    an.modular_id an_modular_id,an.page_name an_page_name,an.page_url an_page_url,an.page_method an_page_method ,an.page_type an_page_type,an.page_sort an_page_sort,an.parent_id an_parent_id,
+    ao.modular_id ao_modular_id,ao.page_name ao_page_name,ao.page_url ao_page_url,ao.page_method ao_page_method ,ao.page_type ao_page_type,ao.page_sort ao_page_sort,ao.parent_id ao_parent_id
+    FROM
+    auth_modular am,auth_modular an,auth_modular ao
+    WHERE
+    am.modular_id = an.parent_id AND an.modular_id = ao.parent_id
+    AND
+    ao.state = '1'
+  </select>
+</mapper>
