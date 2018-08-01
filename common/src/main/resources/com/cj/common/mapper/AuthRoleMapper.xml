@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cj.stcommon.mapper.AuthRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.cj.stcommon.entity.AuthRole" >
+<mapper namespace="com.cj.common.mapper.AuthRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.common.entity.AuthRole" >
     <id column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="role_description_name" property="roleDescriptionName" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from auth_role
     where role_id = #{roleId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cj.stcommon.entity.AuthRole" >
+  <insert id="insert" parameterType="com.cj.common.entity.AuthRole" >
     insert into auth_role (role_id, role_name, role_description_name, 
       role_state)
     values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleDescriptionName,jdbcType=VARCHAR}, 
       #{roleState,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cj.stcommon.entity.AuthRole" >
+  <insert id="insertSelective" parameterType="com.cj.common.entity.AuthRole" >
     insert into auth_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleId != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cj.stcommon.entity.AuthRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.common.entity.AuthRole" >
     update auth_role
     <set >
       <if test="roleName != null" >
@@ -72,7 +72,7 @@
     </set>
     where role_id = #{roleId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cj.stcommon.entity.AuthRole" >
+  <update id="updateByPrimaryKey" parameterType="com.cj.common.entity.AuthRole" >
     update auth_role
     set role_name = #{roleName,jdbcType=VARCHAR},
       role_description_name = #{roleDescriptionName,jdbcType=VARCHAR},

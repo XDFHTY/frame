@@ -13,7 +13,7 @@ public class CorsFilter implements Filter {
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-    System.err.println("CorsFilter");
+    System.err.println("=================进入CorsFilter");
     HttpServletResponse res = (HttpServletResponse) response;
     HttpServletRequest req = (HttpServletRequest) request;
     //允许跨域访问

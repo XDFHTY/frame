@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cj.stcommon.mapper.AuthModularMapper" >
-    <resultMap id="BaseResultMap" type="com.cj.stcommon.entity.AuthModular" >
+<mapper namespace="com.cj.common.mapper.AuthModularMapper" >
+    <resultMap id="BaseResultMap" type="com.cj.common.entity.AuthModular" >
         <id column="modular_id" property="modularId" jdbcType="INTEGER" />
         <result column="page_name" property="pageName" jdbcType="VARCHAR" />
         <result column="page_url" property="pageUrl" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
     delete from auth_modular
     where modular_id = #{modularId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.cj.stcommon.entity.AuthModular" >
+    <insert id="insert" parameterType="com.cj.common.entity.AuthModular" >
     insert into auth_modular (modular_id, page_name, page_url, 
       page_method, page_type, page_sort, 
       parent_id, spare1, state, 
@@ -37,7 +37,7 @@
       #{parentId,jdbcType=INTEGER}, #{spare1,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.cj.stcommon.entity.AuthModular" >
+    <insert id="insertSelective" parameterType="com.cj.common.entity.AuthModular" >
         insert into auth_modular
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="modularId != null" >
@@ -104,7 +104,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.cj.stcommon.entity.AuthModular" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.cj.common.entity.AuthModular" >
         update auth_modular
         <set >
             <if test="pageName != null" >
@@ -137,7 +137,7 @@
         </set>
         where modular_id = #{modularId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.cj.stcommon.entity.AuthModular" >
+    <update id="updateByPrimaryKey" parameterType="com.cj.common.entity.AuthModular" >
     update auth_modular
     set page_name = #{pageName,jdbcType=VARCHAR},
       page_url = #{pageUrl,jdbcType=VARCHAR},
@@ -151,7 +151,7 @@
     where modular_id = #{modularId,jdbcType=INTEGER}
   </update>
 
-    <resultMap id="BaseResultMap_AdminModulars" type="com.cj.stcommon.domain.AuthModulars" >
+    <resultMap id="BaseResultMap_AdminModulars" type="com.cj.common.domain.AuthModulars" >
         <id column="am_modular_id" property="modularId" jdbcType="INTEGER" />
         <result column="am_page_name" property="pageName" jdbcType="VARCHAR" />
         <result column="am_page_url" property="pageUrl" jdbcType="VARCHAR" />
@@ -163,7 +163,7 @@
         <!--<result column="am.state" property="state" jdbcType="CHAR" />-->
         <!--<result column="am.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
         <!--<result column="am.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
-        <collection property="children" ofType="com.cj.stcommon.domain.AuthModulars">
+        <collection property="children" ofType="com.cj.common.domain.AuthModulars">
             <id column="an_modular_id" property="modularId" jdbcType="INTEGER" />
             <result column="an_page_name" property="pageName" jdbcType="VARCHAR" />
             <result column="an_page_url" property="pageUrl" jdbcType="VARCHAR" />
@@ -175,7 +175,7 @@
             <!--<result column="an.state" property="state" jdbcType="CHAR" />-->
             <!--<result column="an.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
             <!--<result column="an.create_time" property="createTime" jdbcType="TIMESTAMP" />-->
-            <collection property="children" ofType="com.cj.stcommon.domain.AuthModulars">
+            <collection property="children" ofType="com.cj.common.domain.AuthModulars">
                 <id column="ao_modular_id" property="modularId" jdbcType="INTEGER" />
                 <result column="ao_page_name" property="pageName" jdbcType="VARCHAR" />
                 <result column="ao_page_url" property="pageUrl" jdbcType="VARCHAR" />

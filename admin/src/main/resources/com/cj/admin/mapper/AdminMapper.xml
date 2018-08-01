@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.admin.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.common.entity.Admin" >
+    <id column="admin_id" property="adminId" jdbcType="BIGINT" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="admin_pass" property="adminPass" jdbcType="VARCHAR" />
+    <result column="salt_val" property="saltVal" jdbcType="VARCHAR" />
+    <result column="admin_type" property="adminType" jdbcType="CHAR" />
+    <result column="admin_state" property="adminState" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admin_id, admin_name, admin_pass, salt_val, admin_type, admin_state, create_time,
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from admin
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.common.entity.Admin" >
+    insert into admin (admin_id, admin_name, admin_pass,
+    salt_val, admin_type, admin_state,
+    create_time, update_time)
+    values (#{adminId,jdbcType=BIGINT}, #{adminName,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR},
+    #{saltVal,jdbcType=VARCHAR}, #{adminType,jdbcType=CHAR}, #{adminState,jdbcType=CHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.common.entity.Admin" >
+    <selectKey order="AFTER" keyProperty="adminId" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="adminPass != null" >
+        admin_pass,
+      </if>
+      <if test="saltVal != null" >
+        salt_val,
+      </if>
+      <if test="adminType != null" >
+        admin_type,
+      </if>
+      <if test="adminState != null" >
+        admin_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="saltVal != null" >
+        #{saltVal,jdbcType=VARCHAR},
+      </if>
+      <if test="adminType != null" >
+        #{adminType,jdbcType=CHAR},
+      </if>
+      <if test="adminState != null" >
+        #{adminState,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.common.entity.Admin" >
+    update admin
+    <set >
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="saltVal != null" >
+        salt_val = #{saltVal,jdbcType=VARCHAR},
+      </if>
+      <if test="adminType != null" >
+        admin_type = #{adminType,jdbcType=CHAR},
+      </if>
+      <if test="adminState != null" >
+        admin_state = #{adminState,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.common.entity.Admin" >
+    update admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+    admin_pass = #{adminPass,jdbcType=VARCHAR},
+    salt_val = #{saltVal,jdbcType=VARCHAR},
+    admin_type = #{adminType,jdbcType=CHAR},
+    admin_state = #{adminState,jdbcType=CHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </update>
+
+  <!--删除账号-->
+  <update id="deleteAdmin" parameterType="java.lang.Long">
+        UPDATE
+    admin
+    SET
+    admin_state = '0'
+    WHERE
+    id = #{adminId}
+  </update>
+
+  <!--批量删除管理员账号-->
+  <update id="deleteAdmins" parameterType="java.util.List" >
+    UPDATE
+    admin
+    SET
+    admin_state = '0'
+    WHERE
+    id IN
+    <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+      #{item,jdbcType=BIGINT}
+    </foreach>
+
+  </update>
+
+  <!--查询所有账号-->
+  <select id="findAllAdmin" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    admin a
+    WHERE
+    a.admin_state = '1'
+
+  </select>
+
+  <!--根据adminName查询admin-->
+  <select id="findAdminByUserName" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    admin a
+    WHERE
+    a.admin_name = #{adminName}
+    and
+    a.admin_state='1'
+  </select>
+
+  <!--根据adminName查询admin-->
+  <select id="findAdminByName" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    admin a
+    WHERE
+    a.admin_name = #{adminName}
+
+  </select>
+
+  <!--修改密码-->
+  <update id="updateAdminPass" parameterType="com.cj.common.entity.Admin">
+    UPDATE
+    admin
+    SET
+    admin_pass = #{adminPass,jdbcType=VARCHAR}
+      WHERE
+      id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

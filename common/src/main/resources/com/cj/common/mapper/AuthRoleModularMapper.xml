@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cj.stcommon.mapper.AuthRoleModularMapper" >
-  <resultMap id="BaseResultMap" type="com.cj.stcommon.entity.AuthRoleModular" >
+<mapper namespace="com.cj.common.mapper.AuthRoleModularMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.common.entity.AuthRoleModular" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="modular_id" property="modularId" jdbcType="BIGINT" />
@@ -19,13 +19,13 @@
     delete from auth_role_modular
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cj.stcommon.entity.AuthRoleModular" >
+  <insert id="insert" parameterType="com.cj.common.entity.AuthRoleModular" >
     insert into auth_role_modular (id, role_id, modular_id
       )
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{modularId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cj.stcommon.entity.AuthRoleModular" >
+  <insert id="insertSelective" parameterType="com.cj.common.entity.AuthRoleModular" >
     insert into auth_role_modular
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cj.stcommon.entity.AuthRoleModular" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.common.entity.AuthRoleModular" >
     update auth_role_modular
     <set >
       <if test="roleId != null" >
@@ -62,18 +62,18 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cj.stcommon.entity.AuthRoleModular" >
+  <update id="updateByPrimaryKey" parameterType="com.cj.common.entity.AuthRoleModular" >
     update auth_role_modular
     set role_id = #{roleId,jdbcType=BIGINT},
       modular_id = #{modularId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <resultMap id="RoleModular" type="com.cj.stcommon.domain.AuthRoleModulars">
+  <resultMap id="RoleModular" type="com.cj.common.domain.AuthRoleModulars">
     <result column="role_id" property="roleId"></result>
     <result column="role_name" property="roleName"></result>
     <result column="role_state" property="roleState"></result>
-    <collection property="modularIds" ofType="com.cj.stcommon.domain.Modular">
+    <collection property="modularIds" ofType="com.cj.common.domain.Modular">
       <result column="modular_id" property="modularId"></result>
     </collection>
   </resultMap>

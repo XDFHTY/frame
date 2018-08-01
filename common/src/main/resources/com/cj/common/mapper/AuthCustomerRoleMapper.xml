@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cj.stcommon.mapper.AuthCustomerRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.cj.stcommon.entity.AuthCustomerRole" >
+<mapper namespace="com.cj.common.mapper.AuthCustomerRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.common.entity.AuthCustomerRole" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="customer_id" property="customerId" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
@@ -19,13 +19,13 @@
     delete from auth_customer_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cj.stcommon.entity.AuthCustomerRole" >
+  <insert id="insert" parameterType="com.cj.common.entity.AuthCustomerRole" >
     insert into auth_customer_role (id, customer_id, role_id
       )
     values (#{id,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cj.stcommon.entity.AuthCustomerRole" >
+  <insert id="insertSelective" parameterType="com.cj.common.entity.AuthCustomerRole" >
     insert into auth_customer_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cj.stcommon.entity.AuthCustomerRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.common.entity.AuthCustomerRole" >
     update auth_customer_role
     <set >
       <if test="customerId != null" >
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cj.stcommon.entity.AuthCustomerRole" >
+  <update id="updateByPrimaryKey" parameterType="com.cj.common.entity.AuthCustomerRole" >
     update auth_customer_role
     set customer_id = #{customerId,jdbcType=BIGINT},
       role_id = #{roleId,jdbcType=BIGINT}

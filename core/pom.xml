@@ -24,6 +24,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.cj</groupId>
+			<artifactId>frame</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<!--依赖的打包的时候指明需要打包的目录resources-->
