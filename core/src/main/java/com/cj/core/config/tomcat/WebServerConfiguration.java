@@ -1,4 +1,4 @@
-package com.cj.core.config;
+package com.cj.core.config.tomcat;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;

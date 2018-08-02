@@ -2,6 +2,7 @@ package com.cj.common.mapper;
 
 import com.cj.common.domain.AuthModulars;
 import com.cj.common.entity.AuthModular;
+import com.cj.core.config.datasource.TargetDataSource;
 
 public interface AuthModularMapper {
     /**
@@ -42,5 +43,6 @@ public interface AuthModularMapper {
 
 
     //查询系统所有权限-树形结构封装
+    @TargetDataSource("shentu")
     public AuthModulars findAllAuthModulars();
 }

@@ -1,7 +1,7 @@
 package com.cj.user.mapper;
 
 
-import com.cj.stcommon.entity.User;
+import com.cj.common.entity.User;
 
 public interface UserMapper {
     /**

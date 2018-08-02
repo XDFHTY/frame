@@ -3,27 +3,30 @@ jasypt:
   encryptor:
     password: root
 
+#======================================springboot默认数据源
 spring:
-  # 数据源
   datasource:
     url: jdbc:mysql://139.199.19.82:3306/frame?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: root
     # Jasypt加密 可到common-utils中找到 JasyptUtil 加解密工具类生成加密结果 格式为ENC(加密结果)
     password: ENC(RjoZ3TFEWyZL/fdwGYTmgw==)
-    type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
     logSlowSql: true
+
 server:
   port: 8091
-
-jdbc:
-  driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://139.199.19.82:3306/frame?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
-  username: root
-  password: root
-
-jdbc2:
-  driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://118.123.16.211:3306/shentu?characterEncoding=UTF-8&useSSL=true&allowMultiQueries=true
-  username: root
-  password: root
+#====================================自定义数据源
+hikari:
+  frame:
+    jdbc-url: jdbc:mysql://139.199.19.82:3306/frame?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: ENC(RjoZ3TFEWyZL/fdwGYTmgw==)
+    maximum-pool-size: 10
+#    driverClassName: com.mysql.jdbc.Driver
+  shentu:
+    jdbc-url: jdbc:mysql://118.123.16.211:3306/shentu?characterEncoding=UTF-8&useSSL=true&allowMultiQueries=true
+    username: root
+    password: ENC(mI1nzP/OCFW7Pf6UO+RQCjHh5z/VzG3V)
+    maximum-pool-size: 10
+#    driverClassName: com.mysql.jdbc.Driver

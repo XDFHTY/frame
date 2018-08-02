@@ -1,4 +1,4 @@
-package com.cj.core.config;
+package com.cj.core.config.thread;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;

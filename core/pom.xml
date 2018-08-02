@@ -29,6 +29,20 @@
 			<artifactId>frame</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!--多数据源用 HikariCP连接池-->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>2.4.6</version>
+		</dependency>
+
+		<!--&lt;!&ndash;swagger ui 页面&ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>com.github.caspar-chen</groupId>-->
+			<!--<artifactId>swagger-ui-layer</artifactId>-->
+			<!--<version>0.0.5</version>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<!--依赖的打包的时候指明需要打包的目录resources-->

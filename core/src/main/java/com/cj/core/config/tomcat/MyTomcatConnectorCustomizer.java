@@ -1,4 +1,4 @@
-package com.cj.core.config;
+package com.cj.core.config.tomcat;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.Http11NioProtocol;

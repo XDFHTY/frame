@@ -1,6 +1,7 @@
-package com.cj.core.config;
+package com.cj.core.config.swagger;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -42,7 +43,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .select()
                 // 自行修改为自己的包路径
-                .apis(RequestHandlerSelectors.basePackage("com.cj"))
+                .apis(RequestHandlerSelectors.basePackage("com.cj."))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars);

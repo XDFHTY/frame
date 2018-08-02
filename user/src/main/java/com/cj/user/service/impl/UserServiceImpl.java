@@ -1,17 +1,16 @@
 package com.cj.user.service.impl;
 
-import com.cj.stcommon.entity.AuthCustomerRole;
-import com.cj.stcommon.entity.AuthRole;
-import com.cj.stcommon.entity.Key64;
-import com.cj.stcommon.entity.User;
-import com.cj.stcommon.mapper.Key64Mapper;
-import com.cj.stcommon.service.AuthCustomerRoleService;
-import com.cj.stcommon.utils.entity.ApiResult;
-import com.cj.stcommon.utils.entity.MemoryData;
-import com.cj.stcommon.utils.jwt.JwtUtil;
-import com.cj.stuser.mapper.UserMapper;
-import com.cj.stuser.service.UserService;
-import com.cj.stuser.vo.UserInfo;
+import com.cj.common.entity.AuthCustomerRole;
+import com.cj.common.entity.AuthRole;
+import com.cj.common.entity.Key64;
+import com.cj.common.entity.User;
+import com.cj.common.mapper.Key64Mapper;
+import com.cj.common.service.AuthCustomerRoleService;
+import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.entity.MemoryData;
+import com.cj.common.utils.jwt.JwtUtil;
+import com.cj.user.mapper.UserMapper;
+import com.cj.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
-import static com.cj.stcommon.utils.md5.Md5Utils.MD5Encode;
+import static com.cj.common.utils.md5.Md5Utils.MD5Encode;
 
 @Service
 @Transactional
@@ -216,7 +215,6 @@ public class UserServiceImpl implements UserService {
             apiResult = ApiResult.FIND_FAIL;
         } else {
             apiResult=ApiResult.FIND_SUCCESS;
-            apiResult.setData(new UserInfo(user));
         }
         return apiResult;
     }

@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           "/",
           "/api",
           "/swagger-ui.html",
+          "/docs.html",
           "/img/**",
           "/static/**",
           "/test/**",
@@ -97,7 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             //因为没用到cookies,所以关闭cookies,防止循环定向
             .csrf().disable()
             //允许跨域
-            .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
+//            .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
             //验证登录
             .addFilterBefore(new LoginFilter(), UsernamePasswordAuthenticationFilter.class)
             //验证权限

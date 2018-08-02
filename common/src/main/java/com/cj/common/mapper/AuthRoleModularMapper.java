@@ -2,6 +2,7 @@ package com.cj.common.mapper;
 
 import com.cj.common.domain.AuthRoleModulars;
 import com.cj.common.entity.AuthRoleModular;
+import com.cj.core.config.datasource.TargetDataSource;
 
 import java.util.List;
 import java.util.Map;
@@ -44,5 +45,6 @@ public interface AuthRoleModularMapper {
     int updateByPrimaryKey(AuthRoleModular record);
 
     //查询角色-权限信息，树形结构封装
+    @TargetDataSource("shentu")
     public List<AuthRoleModulars> findRoleModular();
 }
