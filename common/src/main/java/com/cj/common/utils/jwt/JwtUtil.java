@@ -113,4 +113,29 @@ public class JwtUtil {
 
         return claims;
     }
+
+    public static String getVerifyCodetoken(String code){
+        Date date = new Date();
+        long time = date.getTime();
+        String token = Jwts.builder()
+                .claim("code", code)
+                .setIssuedAt(date)
+                //设置token过期时间戳
+                .setExpiration(new Date(time+1000*60*2))
+                .signWith(mode,key)
+                .compact();
+        return token;
+    }
+    public static  Claims getVerifyCodeClaims(String token){
+        Claims claims=null;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(key)
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return claims;
+    }
 }
