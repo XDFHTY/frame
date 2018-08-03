@@ -50,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           "/img/**",
           "/static/**",
           "/test/**",
+
+          "/api/v1/demo/**",
           //管理员登录
           "/api/v1/admin/ifLogin",
           //用户验证码获取

@@ -90,7 +90,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<finalName>stServer</finalName>
+		<finalName>frameServer</finalName>
 	</build>
 
 
