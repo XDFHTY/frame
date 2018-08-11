@@ -1,8 +1,8 @@
 package com.cj.common.interceptors;
 
 import com.cj.common.utils.jwt.JwtUtil;
-import com.cj.common.utils.entity.ApiResult;
-import com.cj.common.utils.entity.MemoryData;
+import com.cj.common.utils.domain.ApiResult;
+import com.cj.common.utils.domain.MemoryData;
 import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
 import org.springframework.web.servlet.HandlerInterceptor;

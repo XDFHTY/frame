@@ -2,7 +2,7 @@ package com.cj.common.security.dto;
 
 import com.cj.common.domain.AuthModulars;
 import com.cj.common.domain.AuthRoleModulars;
-import com.cj.common.utils.entity.MemoryData;
+import com.cj.common.utils.domain.MemoryData;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;

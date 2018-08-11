@@ -1,13 +1,12 @@
 package com.cj.common.security.filter;
 
-import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.domain.ApiResult;
 import com.cj.common.utils.http.HttpUtil;
 import com.cj.common.utils.jwt.JwtUtil;
 import com.cj.common.security.dto.Customer;
 import com.cj.common.security.dto.TokenUserAuthentication;
-import com.cj.common.utils.entity.MemoryData;
+import com.cj.common.utils.domain.MemoryData;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,6 @@
 package com.cj.common.utils.util;
 
-import com.cj.common.utils.entity.ExpiryMap;
+import com.cj.common.utils.domain.ExpiryMap;
 
 /**
  * created by zy

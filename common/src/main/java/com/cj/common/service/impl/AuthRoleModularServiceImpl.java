@@ -7,7 +7,7 @@ import com.cj.common.domain.Modular;
 import com.cj.common.mapper.AuthModularMapper;
 import com.cj.common.mapper.AuthRoleModularMapper;
 import com.cj.common.service.AuthRoleModularService;
-import com.cj.common.utils.entity.MemoryData;
+import com.cj.common.utils.domain.MemoryData;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

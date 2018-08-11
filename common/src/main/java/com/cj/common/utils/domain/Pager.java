@@ -1,4 +1,4 @@
-package com.cj.common.utils.entity;
+package com.cj.common.utils.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

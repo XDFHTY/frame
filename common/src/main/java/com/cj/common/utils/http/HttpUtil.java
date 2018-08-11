@@ -1,12 +1,11 @@
 package com.cj.common.utils.http;
 
-import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.domain.ApiResult;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 
 public  class  HttpUtil {
 

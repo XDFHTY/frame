@@ -2,7 +2,7 @@ package com.cj.user.service;
 
 
 import com.cj.common.entity.User;
-import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.domain.ApiResult;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;

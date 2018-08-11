@@ -1,6 +1,6 @@
 package com.cj.common.security.filter;
 
-import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.domain.ApiResult;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.SecurityMetadataSource;

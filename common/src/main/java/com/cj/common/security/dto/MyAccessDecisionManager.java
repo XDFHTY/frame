@@ -1,7 +1,7 @@
 
 package com.cj.common.security.dto;
 
-import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.domain.ApiResult;
 import com.cj.common.utils.http.HttpUtil;
 import com.google.gson.Gson;
 import org.springframework.security.access.AccessDecisionManager;

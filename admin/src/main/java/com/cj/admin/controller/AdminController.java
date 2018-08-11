@@ -4,7 +4,7 @@ package com.cj.admin.controller;
 import com.cj.admin.service.AdminService;
 import com.cj.core.aop.Log;
 import com.cj.common.entity.Admin;
-import com.cj.common.utils.entity.ApiResult;
+import com.cj.common.utils.domain.ApiResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

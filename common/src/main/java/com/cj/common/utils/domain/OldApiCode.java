@@ -1,4 +1,4 @@
-package com.cj.common.utils.entity;
+package com.cj.common.utils.domain;
 
 public class OldApiCode {
 
