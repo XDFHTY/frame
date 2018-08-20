@@ -43,6 +43,9 @@
 			<!--<artifactId>swagger-ui-layer</artifactId>-->
 			<!--<version>0.0.5</version>-->
 		<!--</dependency>-->
+
+
+
 	</dependencies>
 
 	<!--依赖的打包的时候指明需要打包的目录resources-->

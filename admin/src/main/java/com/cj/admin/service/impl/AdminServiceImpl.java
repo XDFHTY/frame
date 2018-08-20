@@ -68,15 +68,15 @@ public class AdminServiceImpl implements AdminService {
         admin.setAdminType("1");  //系统管理员
         admin.setCreateTime(new Date(time));
 
-        int i = adminMapper.insertSelective(admin);
 
         //加密密码，MD5（主键+盐值+密码）
         String adminPass = MD5Encode(admin.getAdminId()+admin.getSaltVal()+admin.getAdminPass(),"UTF-8",true);
 
         admin.setAdminPass(adminPass);
 
-        //更新密码
-       int j = adminMapper.updateByPrimaryKey(admin);
+        int i = adminMapper.insertSelective(admin);
+//        //更新密码
+//       int j = adminMapper.updateByPrimaryKey(admin);
 
        //添加角色
         AuthCustomerRole authCustomerRole = new AuthCustomerRole();
@@ -85,7 +85,7 @@ public class AdminServiceImpl implements AdminService {
         int k = authCustomerRoleService.addCustomerRole(authCustomerRole);
 
 
-       if(i ==1 && j==1 && k==1){
+       if(i ==1  && k==1){
            apiResult = ApiResult.ADD_SUCCESS;
            return apiResult;
        }else {

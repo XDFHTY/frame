@@ -9,10 +9,11 @@
     <result column="admin_type" property="adminType" jdbcType="CHAR" />
     <result column="admin_state" property="adminState" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    admin_id, admin_name, admin_pass, salt_val, admin_type, admin_state, create_time,
+    admin_id, admin_name, admin_pass, salt_val, admin_type, admin_state, create_time,operator_id,
     update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -28,10 +29,10 @@
   <insert id="insert" parameterType="com.cj.common.entity.Admin" >
     insert into admin (admin_id, admin_name, admin_pass,
     salt_val, admin_type, admin_state,
-    create_time, update_time)
+    create_time, operator_id, update_time)
     values (#{adminId,jdbcType=BIGINT}, #{adminName,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR},
     #{saltVal,jdbcType=VARCHAR}, #{adminType,jdbcType=CHAR}, #{adminState,jdbcType=CHAR},
-    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    #{createTime,jdbcType=TIMESTAMP},#{operatorId}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cj.common.entity.Admin" >
     <selectKey order="AFTER" keyProperty="adminId" resultType="java.lang.Long">
@@ -60,6 +61,9 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
       <if test="updateTime != null" >
         update_time,
       </if>
@@ -85,6 +89,9 @@
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId},
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
@@ -112,6 +119,9 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=TIMESTAMP},
+      </if>
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
@@ -126,6 +136,7 @@
     admin_type = #{adminType,jdbcType=CHAR},
     admin_state = #{adminState,jdbcType=CHAR},
     create_time = #{createTime,jdbcType=TIMESTAMP},
+    operator_id = #{operatorId},
     update_time = #{updateTime,jdbcType=TIMESTAMP}
     where admin_id = #{adminId,jdbcType=BIGINT}
   </update>
