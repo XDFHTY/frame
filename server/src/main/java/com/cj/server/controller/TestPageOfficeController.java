@@ -1,21 +1,23 @@
 package com.cj.server.controller;
 
 import com.zhuozhengsoft.pageoffice.FileSaver;
-import com.zhuozhengsoft.pageoffice.OfficeVendorType;
 import com.zhuozhengsoft.pageoffice.OpenModeType;
 import com.zhuozhengsoft.pageoffice.PageOfficeCtrl;
-import com.zhuozhengsoft.pageoffice.wordwriter.WordDocument;
+import com.zhuozhengsoft.pageoffice.wordreader.WordDocument;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
+import java.lang.annotation.Documented;
 import java.util.Map;
 
 @Controller
@@ -46,18 +48,14 @@ public class TestPageOfficeController {
         PageOfficeCtrl poCtrl=new PageOfficeCtrl(request);
         poCtrl.setServerPage("/poserver.zz");//设置服务页面
 
-//        poCtrl.addCustomMenuItem("隐藏痕迹(&H)", "OnCustomMenuClick()", true);
-//        poCtrl.addCustomMenuItem("-", "", false);
-
-//        poCtrl.setCustomRibbon("2007");
-//        poCtrl.setOfficeVendor(OfficeVendorType.MSOffice);
-//        poCtrl.setVisible(true);
-
-        WordDocument doc = new WordDocument();
+        //向word指定位置写入数据
+        com.zhuozhengsoft.pageoffice.wordwriter.WordDocument doc = new com.zhuozhengsoft.pageoffice.wordwriter.WordDocument();
         doc.openDataRegion("total").setValue("测试插入标题");
         doc.openDataRegion("number").setValue("测试插入编号");
         poCtrl.setWriter(doc);
 
+
+        //添加自定义按钮
         poCtrl.addCustomToolButton("保存","Save",1);//添加自定义保存按钮
         poCtrl.addCustomToolButton("盖章","AddSeal",2);//添加自定义盖章按钮
         poCtrl.setSaveFilePage("/save");//设置处理文件保存的请求方法
@@ -65,41 +63,48 @@ public class TestPageOfficeController {
         poCtrl.webOpen("file:///d:/lic/履历本样本_GJB2489_602.docx", OpenModeType.docNormalEdit,"张三");
         map.put("pageoffice",poCtrl.getHtmlCode("PageOfficeCtrl1"));
 
+
         ModelAndView mv = new ModelAndView("Word");
         return mv;
     }
-//
-//    /**
-//     * 向word输出数据
-//     */
-//    @RequestMapping(value="/word", method=RequestMethod.GET)
-//    public ModelAndView setData(HttpServletRequest request){
-//
-//        PageOfficeCtrl poCtrl1 = new PageOfficeCtrl(request);
-//        poCtrl1.setServerPage("/poserver.zz");//设置服务页面
-//
-//        WordDocument doc = new WordDocument();
-//        doc.openDataRegion("total").setValue("测试插入标题");
-//        doc.openDataRegion("number").setValue("测试插入编号");
-//        poCtrl1.setWriter(doc);
-//
-//        poCtrl1.addCustomToolButton("保存","Save",1);//添加自定义保存按钮
-//        poCtrl1.addCustomToolButton("盖章","AddSeal",2);//添加自定义盖章按钮
-//        poCtrl1.setSaveDataPage("/save");
-//
-////        poCtrl1.setJsFunction_OnWordDataRegionClick("OnWordDataRegionClick()"); //JS函数响应时间
-//        poCtrl1.webOpen("file:///d:/lic/履历本样本_GJB2489_602.docx", OpenModeType.docSubmitForm, "张三");
-//        poCtrl1.setTagId("PageOfficeCtrl1"); // 此行必须
-//
-//        ModelAndView mv = new ModelAndView("Word");
-//        return mv;
-//    }
+
+    @GetMapping("/read")
+    public ModelAndView readWord(HttpServletRequest request,HttpServletResponse response,Map<String,Object> map){
+        PageOfficeCtrl poCtrl=new PageOfficeCtrl(request);
+        poCtrl.setServerPage("/poserver.zz");//设置服务页面
+
+
+
+        //添加自定义按钮
+        poCtrl.addCustomToolButton("提取数据","Reader",5);//添加自定义保存按钮
+        poCtrl.addCustomToolButton("盖章","AddSeal",2);//添加自定义盖章按钮
+        poCtrl.setSaveDataPage("/reader");//设置处理文件的请求方法
+        //打开word
+        poCtrl.webOpen("file:///d:/lic/file/履历本样本_GJB2489_602.docx", OpenModeType.docNormalEdit,"张三");
+        map.put("pageoffice",poCtrl.getHtmlCode("PageOfficeCtrl1"));
+
+
+
+        ModelAndView mv = new ModelAndView("Word");
+        return mv;
+    }
 
     @RequestMapping("/save")
     public void saveFile(HttpServletRequest request, HttpServletResponse response){
         FileSaver fs = new FileSaver(request, response);
         fs.saveToFile("d:/lic/file/" + fs.getFileName());
         fs.close();
+    }
+
+
+    @PostMapping("/reader")
+    public void readFile(HttpServletRequest request, HttpServletResponse response){
+        WordDocument doc = new WordDocument(request,response);
+        String name = doc.openDataRegion("total").getValue();
+        String num = doc.openDataRegion("number").getValue();
+        System.out.println(name);
+        System.out.println(num);
+
     }
 
 

@@ -7,6 +7,13 @@
           	function Save() {
               	document.getElementById("PageOfficeCtrl1").WebSave();
         	}
+          	function Reader() {
+              	document.getElementById("PageOfficeCtrl1").WebReader();
+        	}
+
+            function WebReader(){
+                document.getElementById("PageOfficeCtrl1").WebReader();// 提交到服务器
+            }
         </script>
         <script type="text/javascript">
          function AddSeal() {
@@ -22,4 +29,5 @@
         
         <div style="width:1000px;height:700px;" th:utext="${pageoffice}"></div>
     </body>
+
 </html>
