@@ -52,8 +52,10 @@ public class JasyptUtil {
     public static void main(String[] args){
 
         //加密
-        System.out.println(encyptPwd("root","root"));
+        System.out.println(encyptPwd("jewe","jdbc:mysql://118.123.16.211:3306/jewe_pro?characterEncoding=UTF-8&useSSL=true&allowMultiQueries=true"));
+        System.out.println(encyptPwd("jewe","root"));
+        System.out.println(encyptPwd("jewe","rootpass"));
         //解密
-        System.out.println(decyptPwd("root","mI1nzP/OCFW7Pf6UO+RQCjHh5z/VzG3V"));
+        System.out.println(decyptPwd("witschool","D2iSQiHhY5Nv3HtABHgSlsW9gYa+DUq3uRjDHQMzzlMkV7Q5xRY1XXOyEO/Shf5icKgXk4rUEDO2ao1OjhilyqV9RmeEbPQMMND4pP69NCAYwCT/Zpry0Ez5wo2ccYlKyx8qT78mMlC6o5JIhs52Sg=="));
     }
 }

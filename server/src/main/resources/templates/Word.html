@@ -7,13 +7,8 @@
           	function Save() {
               	document.getElementById("PageOfficeCtrl1").WebSave();
         	}
-          	function Reader() {
-              	document.getElementById("PageOfficeCtrl1").WebReader();
-        	}
 
-            function WebReader(){
-                document.getElementById("PageOfficeCtrl1").WebReader();// 提交到服务器
-            }
+
         </script>
         <script type="text/javascript">
          function AddSeal() {
@@ -22,12 +17,20 @@
 			}catch (e){ };
         	}
   		</script>
+        <script>
+            function Readerlll(){
+                document.getElementById("PageOfficeCtrl1").WebReader();// 提交到服务器
+            }
+            function WebReader() {
+                document.getElementById("PageOfficeCtrl1").WebReader();// 保存到服务器
+            }
+        </script>
         
     </head>
     <body>
-        <h1 th:inline="text">Hello.v.2</h1>
+        <h1 th:inline="text">XXX履历本</h1>
         
-        <div style="width:1000px;height:700px;" th:utext="${pageoffice}"></div>
+        <div style="width:1024px;height:768px;" th:utext="${pageoffice}"></div>
     </body>
 
 </html>

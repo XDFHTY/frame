@@ -76,9 +76,9 @@ public class TestPageOfficeController {
 
 
         //添加自定义按钮
-        poCtrl.addCustomToolButton("提取数据","Reader",5);//添加自定义保存按钮
+        poCtrl.addCustomToolButton("提取数据","Readerlll",0);//添加自定义保存按钮
         poCtrl.addCustomToolButton("盖章","AddSeal",2);//添加自定义盖章按钮
-        poCtrl.setSaveDataPage("/reader");//设置处理文件的请求方法
+        poCtrl.setSaveFilePage("/reader");//设置处理文件的请求方法
         //打开word
         poCtrl.webOpen("file:///d:/lic/file/履历本样本_GJB2489_602.docx", OpenModeType.docNormalEdit,"张三");
         map.put("pageoffice",poCtrl.getHtmlCode("PageOfficeCtrl1"));
