@@ -2,6 +2,12 @@
 jasypt:
   encryptor:
     password: root
+server:
+  port: 8091
+
+#这个属于自定义的属性，指定了一个路径，用于文件上传，注意要以/结尾
+web:
+  upload-path: D:/file/
 
 #======================================springboot默认数据源
 spring:
@@ -14,8 +20,6 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     logSlowSql: true
 
-server:
-  port: 8091
 #====================================自定义数据源
 hikari:
   frame:

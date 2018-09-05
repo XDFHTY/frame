@@ -16,6 +16,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +105,12 @@ public class LoginFilter extends OncePerRequestFilter {
       //存储用户的基本信息和角色信息到上下文
       List<Map> roles = new ArrayList<>();
       roles.addAll((List) claims.get("roles"));
+
+      HttpSession session = request.getSession();
+      session.setAttribute("id",customer.getCustomerId());
+      session.setAttribute("name",customer.getCustomerName());
+      session.setAttribute("type",customer.getCustomerType());
+
       authentication = Optional.of(new TokenUserAuthentication(customer, roles, true));
       SecurityContextHolder.getContext().setAuthentication(authentication.orElse(null));
       filterChain.doFilter(request, response);

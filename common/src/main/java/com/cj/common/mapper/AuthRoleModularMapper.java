@@ -45,6 +45,6 @@ public interface AuthRoleModularMapper {
     int updateByPrimaryKey(AuthRoleModular record);
 
     //查询角色-权限信息，树形结构封装
-    @TargetDataSource("shentu")
+//    @TargetDataSource("shentu")
     public List<AuthRoleModulars> findRoleModular();
 }

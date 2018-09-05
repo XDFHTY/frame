@@ -30,6 +30,7 @@
 		<module>common</module>
 		<module>admin</module>
 		<module>user</module>
+		<module>websocket</module>
 		<module>demo</module>
 		<module>server</module>
 	</modules>
@@ -132,6 +133,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+
+		<!--RabbitMQ-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
+
 
 		<!--lombok-->
 		<dependency>

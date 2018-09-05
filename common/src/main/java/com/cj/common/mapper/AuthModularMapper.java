@@ -43,6 +43,6 @@ public interface AuthModularMapper {
 
 
     //查询系统所有权限-树形结构封装
-    @TargetDataSource("shentu")
+//    @TargetDataSource("shentu")
     public AuthModulars findAllAuthModulars();
 }

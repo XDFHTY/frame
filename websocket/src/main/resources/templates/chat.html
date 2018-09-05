@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8" />
+<head>
+    <title>Home</title>
+    <script src="/static/js/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.js"></script>
+    <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+</head>
+<>
+<p>
+    聊天室
+</p>
+<form id="wiselyForm">
+    <textarea rows="4" cols="60" name="text"></textarea>
+    <input type="submit"/>
+</form>
+<div id="d1" th:text="发送人"><input id="i1" name="userName" value=""></div>
+<script th:inline="javascript">
+
+    var bathPath = 'http://192.168.0.109:8091';
+    //消息发送人
+    var userName = [[${userName}]];
+    //消息接收人
+    var toName = [[${toName}]];
+
+    console.log(userName)
+    console.log(toName)
+
+
+    var ws1t = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjUsInVzZXJOYW1lIjoid3MxIiwidXNlclR5cGUiOiIxIiwiaWF0IjoxNTMwMjU4MDE3fQ.OqBOD-toIkcOZrUgHRjPRwDeV4Goe8zUzOIcvCFysXc";
+    var ws2t = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjYsInVzZXJOYW1lIjoid3MyIiwidXNlclR5cGUiOiIxIiwiaWF0IjoxNTMwMjU4MDY1fQ.WNXj8QakCGXKHv2Kz2XQufe1-iTj5TTYPn5Ue3iM9Tg";
+
+    var token = "";
+    if(userName=='ws1'){
+        token = ws1t;
+    }else if(userName=='ws2'){
+        token = ws2t;
+    }
+
+    console.log(token)
+
+    $('#wiselyForm').submit(function(e){
+        e.preventDefault();
+        var text = $('#wiselyForm').find('textarea[name="text"]').val();
+        sendSpittle(text);
+    });
+
+    var wsurl = bathPath+'/endpointChat?token='+token;
+    console.log(wsurl)
+    //链接endpoint名称为 "/endpointChat" 的endpoint。
+    var sock = new SockJS(wsurl);
+    var stomp = Stomp.over(sock);
+
+    var url = "/user/queue/msg/result/"+userName+"-"+toName;
+    console.log('============'+url)
+
+
+    stomp.connect({}, function(frame) {
+        /**  订阅了/user/queue/notifications 发送的消息,这里与在控制器的 convertAndSendToUser 定义的地址保持一致, 
+         *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
+         *  */
+        //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
+        stomp.subscribe(url, function(respnose){
+            console.log('==接收到的结果=='+respnose.body)
+            handleNotification(JSON.parse(respnose.body));
+        });
+    });
+
+
+
+    function handleNotification(apiResult) {
+
+
+        $('#output').append("<b>"+apiResult.data.time+" : " + apiResult.data.msg + "</b><br/>")
+    }
+
+    function sendSpittle(text) {
+
+        console.log(text,userName)
+
+        stomp.send(
+            "/app/msg",
+            { 'token': token},
+            JSON.stringify({ 'msg': text,'userName':userName,'toName':toName }));
+    }
+    $('#stop').click(function() {sock.close()});
+</script>
+
+<div id="output"></div>
+</body>
+</html>
